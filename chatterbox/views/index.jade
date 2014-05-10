@@ -1,0 +1,31 @@
+extends layout
+
+append content
+  #main.container
+      .col-md-3
+        .col-md-12.chatroomlist
+          h1 chatrooms
+          .form-group
+            input#chatroom.form-control.createNewRoomName(type='text', placeholder='')
+          button.btn.btn-.createNewRoomButton(type='button') create chatroom
+        .col-md-12.chatroomlist
+          h1 active room
+          .btn-group
+            button#chatroom-list-button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+              | lobby
+              span.caret
+            ul.dropdown-menu(role='menu')
+        .col-md-12.chatroomlist
+          h1 friends
+          ul.friends.list-group
+      .col-md-8
+        h1
+          a.title(href='')
+            | chatter
+            em box
+        .form-group
+          .input-group
+            input.form-control.composeMessage(type='text')
+            span.input-group-btn
+              button.btn.btn-default.sendMessage(type='button') send
+        .message-list
