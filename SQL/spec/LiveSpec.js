@@ -3,7 +3,7 @@
 
 var mysql = require('mysql');
 var request = require("request"); // You might need to npm install the request module!
-var expect = require('../../node_modules/chai/chai').expect;
+var expect = require('../node_modules/chai/chai').expect;
 
 describe("Persistent Node Chat Server", function() {
   var dbConnection;
@@ -11,14 +11,14 @@ describe("Persistent Node Chat Server", function() {
   beforeEach(function(done) {
     dbConnection = mysql.createConnection({
     /* TODO: Fill this out with your mysql username */
-      user: "",
+      user: "root",
     /* and password. */
       password: "",
       database: "chat"
     });
     dbConnection.connect();
 
-    var tablename = ""; // TODO: fill this out
+    var tablename = "messages"; // TODO: fill this out
 
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
@@ -34,7 +34,9 @@ describe("Persistent Node Chat Server", function() {
     request({method: "POST",
              uri: "http://127.0.0.1:8080/classes/room1",
              form: {username: "Valjean",
-                    message: "In mercy's name, three days is all I need."}
+                    message: "In mercy's name, three days is all I need.",
+                    roomname: "lobby"
+                  }
             },
             function(error, response, body) {
               /* Now if we look in the database, we should find the
